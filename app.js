@@ -11,7 +11,7 @@ const DB =
 
 //middleware
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 //product get request
 app.get("/products", async (req, res) => {
   try {
@@ -73,14 +73,15 @@ app.delete("/products/:id", async (req, res) => {
 
 //Product Post request
 app.post("/products", async (req, res) => {
-  const { name, quantity, price, image } = req.body;
+  const { name, jobPosition, email, contactNumber, country } = req.body;
 
   try {
     const product = await Product.create({
       name,
-      quantity,
-      price,
-      image,
+      jobPosition,
+      email,
+      contactNumber,
+      country,
     });
     res.status(201).json({ data: product, message: "Data added successfully" });
   } catch (error) {
